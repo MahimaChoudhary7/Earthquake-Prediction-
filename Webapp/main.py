@@ -14,18 +14,9 @@ earthquake_live = None
 days_out_to_predict = 7
 
 
-#app = Flask(__name__)
+# app = Flask(__name__)
 
 def prepare_earthquake_data_and_model(days_out_to_predict = 7, max_depth=3, eta=0.1):
-    '''
-    Desccription : From extraction to model preparation. This function takes in how many days to predict or rolling window
-                    period, max_depth for XGboost and learning rate. We extract data directly from https://earthquake.usgs.gov/
-                    instead of loading from existing database since we want real time data that is updated every minute.
-    
-    Arguments : int (days_to_predict rolling window), int (maximum depth hyperparameter for xgboost), float (learning rate of alogrithm)
-
-    Return : Pandas Dataframe (Prediction dataframe with live/ future NaN values in outcome magnitutde of quake that has to be predicted)
-    '''
     # get latest data from USGS servers
     df = pd.read_csv('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.csv')
     df = df.sort_values('time', ascending=True)
@@ -104,9 +95,9 @@ def prepare_earthquake_data_and_model(days_out_to_predict = 7, max_depth=3, eta=
             'objective': 'binary:logistic',
             'booster': 'gbtree',
             'eval_metric': 'auc',
-            'max_depth': max_depth,  # the maximum depth of each tree
-            'eta': eta,  # the training step for each iteration
-            }  # logging mode - quiet}  # the number of classes that exist in this datset
+            'max_depth': max_depth,  
+            'eta': eta, 
+            }  
 
     num_round = 1000  # the number of training iterations    
     early_stopping_rounds=30
