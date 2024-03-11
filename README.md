@@ -2,7 +2,7 @@
 This readme.md file is made by Aditya Srichad and is used by us for references.
 ### Contributors:
 Akansha Uniyal <br>
-Mahima Chaudhary <br>
+Mahima Choudhary <br>
 Siddharth Bhushan <br>
 Ritesh Chauhan <br>
 
